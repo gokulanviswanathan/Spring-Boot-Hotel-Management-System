@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,12 +56,42 @@ public class HotelMgmtController {
 		if (StringUtils.isNullOrEmpty(hotelId)) {
 			throw new HotelMgmtException();
 		}
-		
-		if (HotelMgmtUtil.checkForValidUUID(hotelId))
-		{
+
+		if (HotelMgmtUtil.checkForValidUUID(hotelId)) {
 			hotelRepository.delete(hotelId);
 		}
 
 		return hotelId + HotelMgmtConstants.DELETE_SUCCESS;
 	}
+
+	@PatchMapping("/{hotelId}/patchHotel")
+	@ResponseBody
+	public Object patchHotel(@PathVariable("hotelId") String hotelId, @RequestBody HotelRequest hotelRequest) {
+		if (StringUtils.isNullOrEmpty(hotelId)) {
+			throw new HotelMgmtException();
+		}
+
+		if (HotelMgmtUtil.checkForValidUUID(hotelId)) {
+			Hotel existingHotel = hotelRepository.findOne(hotelId);
+			if (null != existingHotel) {
+				if (HotelMgmtUtil.checkForNotNullAndEmpty(hotelRequest.getName())) {
+					existingHotel.setName(hotelRequest.getName());
+				}
+
+				if (HotelMgmtUtil.checkForNotNullAndEmpty(hotelRequest.getCity())) {
+					existingHotel.setCity(hotelRequest.getCity());
+				}
+
+				if (HotelMgmtUtil.checkForNotNullAndEmpty(hotelRequest.getState())) {
+					existingHotel.setState(hotelRequest.getState());
+				}
+				
+				hotelRepository.saveAndFlush(existingHotel);
+			}
+
+		}
+
+		return hotelId + HotelMgmtConstants.DELETE_SUCCESS;
+	}
+
 }
