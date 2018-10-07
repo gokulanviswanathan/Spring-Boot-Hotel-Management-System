@@ -1,0 +1,9 @@
+CREATE DATABASE restaurant;
+
+USE restaurant;
+
+CREATE TABLE hotel (id varchar(50), name varchar(32), city varchar(32), state varchar(32));
+
+ALTER TABLE hotel ADD PRIMARY KEY (id);
+
+ALTER TABLE hotel MODIFY COLUMN id varchar(100);
