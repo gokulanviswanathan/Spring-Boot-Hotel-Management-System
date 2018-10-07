@@ -1,0 +1,30 @@
+--------------------------------------------
+PROVIDES LIST OF REST API PRESENT IN THE APP
+--------------------------------------------
+
+
+##################
+1. GET HOTELS LIST
+##################
+
+
+METHOD	: GET
+URL	: https://{ipaddress}:{port}/hotel/getHotels
+REQUEST	: NA
+RESPONSE: List of Hotel objects in Pageable format
+
+##############################
+2. GET HOTELS LIST WITH FILTER
+##############################
+
+######################
+3. PATCH HOTEL DETAILS
+######################
+
+###############
+4. DELETE HOTEL
+###############
+
+###############
+5. ADD AN HOTEL
+###############
