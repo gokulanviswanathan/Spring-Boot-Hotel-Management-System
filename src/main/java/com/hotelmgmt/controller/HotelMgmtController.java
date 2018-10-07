@@ -1,11 +1,11 @@
 package com.hotelmgmt.controller;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,7 +24,6 @@ import com.hotelmgmt.entity.HotelSpecification;
 import com.hotelmgmt.entity.SearchCriteria;
 import com.hotelmgmt.exception.HotelMgmtException;
 import com.hotelmgmt.util.HotelMgmtUtil;
-import com.mysql.jdbc.StringUtils;
 
 @Controller
 @RequestMapping("hotel")
@@ -57,7 +56,7 @@ public class HotelMgmtController {
 	@DeleteMapping("/{hotelId}/deleteHotel")
 	@ResponseBody
 	public Object deleteHotel(@PathVariable("hotelId") String hotelId) {
-		if (StringUtils.isNullOrEmpty(hotelId)) {
+		if (StringUtils.isEmpty(hotelId)) {
 			throw new HotelMgmtException();
 		}
 
@@ -71,7 +70,7 @@ public class HotelMgmtController {
 	@PatchMapping("/{hotelId}/patchHotel")
 	@ResponseBody
 	public Object patchHotel(@PathVariable("hotelId") String hotelId, @RequestBody HotelRequest hotelRequest) {
-		if (StringUtils.isNullOrEmpty(hotelId)) {
+		if (StringUtils.isEmpty(hotelId)) {
 			throw new HotelMgmtException();
 		}
 
