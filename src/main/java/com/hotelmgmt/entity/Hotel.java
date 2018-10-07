@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+
 @Entity
 @Table(name = "hotel")
+@FilterDef(name="filterByCity", parameters={@ParamDef(name="city", type="string")})
 public class Hotel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -1,5 +1,6 @@
 package com.hotelmgmt.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hotelmgmt.constants.HotelMgmtConstants;
 import com.hotelmgmt.entity.Hotel;
 import com.hotelmgmt.entity.HotelRepository;
 import com.hotelmgmt.entity.HotelRequest;
+import com.hotelmgmt.entity.HotelSpecification;
+import com.hotelmgmt.entity.SearchCriteria;
 import com.hotelmgmt.exception.HotelMgmtException;
 import com.hotelmgmt.util.HotelMgmtUtil;
 import com.mysql.jdbc.StringUtils;
@@ -85,13 +89,21 @@ public class HotelMgmtController {
 				if (HotelMgmtUtil.checkForNotNullAndEmpty(hotelRequest.getState())) {
 					existingHotel.setState(hotelRequest.getState());
 				}
-				
+
 				hotelRepository.saveAndFlush(existingHotel);
 			}
 
 		}
 
-		return hotelId + HotelMgmtConstants.DELETE_SUCCESS;
+		return hotelId + HotelMgmtConstants.PATCH_SUCCESS;
 	}
 
+	@GetMapping("getHotelsWithFilter")
+	@ResponseBody
+	public Object getHotelsWithFileter(@RequestParam(value = "filterBy") String filterValue, Pageable pageable) {
+		SearchCriteria searchCriteria = new SearchCriteria(HotelMgmtConstants.FILTER_COLUMN, HotelMgmtConstants.FILTER_OPERATION, filterValue);
+		HotelSpecification spec = new HotelSpecification(searchCriteria);
+
+		return hotelRepository.findAll(spec, pageable);
+	}
 }
