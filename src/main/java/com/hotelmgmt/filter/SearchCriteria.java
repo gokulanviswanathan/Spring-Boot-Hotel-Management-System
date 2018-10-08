@@ -1,4 +1,4 @@
-package com.hotelmgmt.entity;
+package com.hotelmgmt.filter;
 
 public class SearchCriteria {
 

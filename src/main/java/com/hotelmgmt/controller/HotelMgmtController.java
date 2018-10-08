@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hotelmgmt.constants.HotelMgmtConstants;
 import com.hotelmgmt.entity.Hotel;
-import com.hotelmgmt.entity.HotelRepository;
 import com.hotelmgmt.entity.HotelRequest;
-import com.hotelmgmt.entity.HotelSpecification;
-import com.hotelmgmt.entity.SearchCriteria;
 import com.hotelmgmt.exception.HotelMgmtException;
+import com.hotelmgmt.filter.HotelSpecification;
+import com.hotelmgmt.filter.SearchCriteria;
+import com.hotelmgmt.repository.HotelRepository;
 import com.hotelmgmt.util.HotelMgmtUtil;
 
 @Controller
@@ -55,7 +55,7 @@ public class HotelMgmtController {
 
 	@DeleteMapping("/{hotelId}/deleteHotel")
 	@ResponseBody
-	public Object deleteHotel(@PathVariable("hotelId") String hotelId) {
+	public String deleteHotel(@PathVariable("hotelId") String hotelId) {
 		if (StringUtils.isEmpty(hotelId)) {
 			throw new HotelMgmtException();
 		}
@@ -69,7 +69,7 @@ public class HotelMgmtController {
 
 	@PatchMapping("/{hotelId}/patchHotel")
 	@ResponseBody
-	public Object patchHotel(@PathVariable("hotelId") String hotelId, @RequestBody HotelRequest hotelRequest) {
+	public String patchHotel(@PathVariable("hotelId") String hotelId, @RequestBody HotelRequest hotelRequest) {
 		if (StringUtils.isEmpty(hotelId)) {
 			throw new HotelMgmtException();
 		}
@@ -99,7 +99,7 @@ public class HotelMgmtController {
 
 	@GetMapping("getHotelsWithFilter")
 	@ResponseBody
-	public Object getHotelsWithFileter(@RequestParam(value = "filterBy") String filterValue, Pageable pageable) {
+	public Object getHotelsWithFilter(@RequestParam(value = "filterBy") String filterValue, Pageable pageable) {
 		SearchCriteria searchCriteria = new SearchCriteria(HotelMgmtConstants.FILTER_COLUMN, HotelMgmtConstants.FILTER_OPERATION, filterValue);
 		HotelSpecification spec = new HotelSpecification(searchCriteria);
 
