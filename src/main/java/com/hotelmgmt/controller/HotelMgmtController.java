@@ -1,5 +1,7 @@
 package com.hotelmgmt.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hotelmgmt.constants.HotelMgmtConstants;
 import com.hotelmgmt.entity.Hotel;
+import com.hotelmgmt.entity.HotelCities;
 import com.hotelmgmt.entity.HotelRequest;
 import com.hotelmgmt.exception.HotelMgmtException;
 import com.hotelmgmt.filter.HotelSpecification;
@@ -50,7 +53,7 @@ public class HotelMgmtController {
 
 		hotelRepository.saveAndFlush(hotel);
 
-		return hotel.getId();
+		return hotel.getId() + HotelMgmtConstants.ADD_SUCCESS;
 	}
 
 	@DeleteMapping("/{hotelId}/deleteHotel")
@@ -100,9 +103,25 @@ public class HotelMgmtController {
 	@GetMapping("getHotelsWithFilter")
 	@ResponseBody
 	public Object getHotelsWithFilter(@RequestParam(value = "filterBy") String filterValue, Pageable pageable) {
-		SearchCriteria searchCriteria = new SearchCriteria(HotelMgmtConstants.FILTER_COLUMN, HotelMgmtConstants.FILTER_OPERATION, filterValue);
+		SearchCriteria searchCriteria = new SearchCriteria(HotelMgmtConstants.FILTER_COLUMN,
+				HotelMgmtConstants.FILTER_OPERATION, filterValue);
 		HotelSpecification spec = new HotelSpecification(searchCriteria);
 
 		return hotelRepository.findAll(spec, pageable);
+	}
+
+	@PostMapping("getHotelsWithMultipleFilter")
+	@ResponseBody
+	public Object getHotelsWithMultipleFilter(@RequestBody HotelCities cities, Pageable pageable) {
+
+		if (null != cities) {
+
+			List<String> citiesList = Arrays.asList(cities.getCities());
+
+			return hotelRepository.findByCityIn(citiesList, pageable);
+
+		}
+
+		return null;
 	}
 }
