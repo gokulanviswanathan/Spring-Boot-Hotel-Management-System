@@ -1,3 +1,11 @@
+ _______________________________
+|		HOTEL MANAGEMENT		| 
+|	       REST APIS 			|
+|	  WITH CRUD OPERATIONS		|
+|_______________________________|
+
+
+
 --------------------------------------------
 PROVIDES LIST OF REST API PRESENT IN THE APP
 --------------------------------------------
@@ -9,13 +17,18 @@ PROVIDES LIST OF REST API PRESENT IN THE APP
 
 
 METHOD	: GET
-URL	: https://{ipaddress}:{port}/hotel/getHotels
+URL		: https://{ipaddress}:{port}/hotel/getHotels?page=0&size=8
 REQUEST	: NA
 RESPONSE: List of Hotel objects in Pageable format
 
-##############################
-2. GET HOTELS LIST WITH FILTER
-##############################
+#######################################
+2. GET HOTELS LIST WITH MULTIPLE FILTER
+#######################################
+
+METHOD	: POST
+URL		: http://{ipaddress}:{port}/hotel/getHotelsWithMultipleFilter?page=0&size=8
+REQUEST	: {"cities":["Chennai","Trichy"]}
+RESPONSE: List of filtered Hotel objects in Pageable format
 
 ######################
 3. PATCH HOTEL DETAILS
@@ -28,3 +41,6 @@ RESPONSE: List of Hotel objects in Pageable format
 ###############
 5. ADD AN HOTEL
 ###############
+
+
+
