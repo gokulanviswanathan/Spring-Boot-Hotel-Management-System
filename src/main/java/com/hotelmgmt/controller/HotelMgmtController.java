@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hotelmgmt.constants.HotelMgmtConstants;
 import com.hotelmgmt.entity.Hotel;
-import com.hotelmgmt.entity.HotelCities;
 import com.hotelmgmt.entity.HotelRequest;
 import com.hotelmgmt.exception.HotelMgmtException;
 import com.hotelmgmt.filter.HotelSpecification;
@@ -110,13 +109,13 @@ public class HotelMgmtController {
 		return hotelRepository.findAll(spec, pageable);
 	}
 
-	@PostMapping("getHotelsWithMultipleFilter")
+	@GetMapping("getHotelsWithMultipleFilter")
 	@ResponseBody
-	public Object getHotelsWithMultipleFilter(@RequestBody HotelCities cities, Pageable pageable) {
+	public Object getHotelsWithMultipleFilter(@RequestParam("city") String[] cities, Pageable pageable) {
 
 		if (null != cities) {
 
-			List<String> citiesList = Arrays.asList(cities.getCities());
+			List<String> citiesList = Arrays.asList(cities);
 
 			return hotelRepository.findByCityIn(citiesList, pageable);
 

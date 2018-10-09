@@ -25,9 +25,9 @@ RESPONSE: List of Hotel objects in Pageable format
 2. GET HOTELS LIST WITH MULTIPLE FILTER
 #######################################
 
-METHOD	: POST
-URL		: http://{ipaddress}:{port}/hotel/getHotelsWithMultipleFilter?page=0&size=8
-REQUEST	: {"cities":["Chennai","Trichy"]}
+METHOD	: GET
+URL		: http://localhost:8080/hotel/getHotelsWithMultipleFilter?city=Trivandrum&city=Trichy&page=0&size=8
+REQUEST	: NA
 RESPONSE: List of filtered Hotel objects in Pageable format
 
 ######################
