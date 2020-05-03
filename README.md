@@ -1,8 +1,8 @@
-# Very Basic Hotel Management System API based on Spring Boot
+# Very Basic Hotel Management System API based on Spring Boot (Docker enabled)
 
 ## Objective
 
-This project provides very basic learning experience to Spirng Boot framework
+This project provides very basic learning experience to Spring Boot framework
 
 ## Runs on
 
