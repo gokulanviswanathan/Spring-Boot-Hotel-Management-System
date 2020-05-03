@@ -1,6 +1,4 @@
-# Hotel Management System API based on Spring Boot
-
-Runs on Spring Boot version 1.5
+# Very Basic Hotel Management System API based on Spring Boot
 
 ## Objective
 
