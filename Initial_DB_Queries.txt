@@ -7,3 +7,5 @@ CREATE TABLE hotel (id varchar(50), name varchar(32), city varchar(32), state va
 ALTER TABLE hotel ADD PRIMARY KEY (id);
 
 ALTER TABLE hotel MODIFY COLUMN id varchar(100);
+
+INSERT INTO hotel (id, name, city, start) values ("abc123", "ABCXYZ", "PQRS", "XYZ");
