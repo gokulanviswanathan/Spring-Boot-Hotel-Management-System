@@ -62,4 +62,4 @@ Below the handy commands to bring this application up in Linux distribution envi
 
 ## PRO TIP
 
-In [application.proerties](https://github.com/gokulanviswanathan/Spring-Boot-Hotel-Management-System/blob/master/src/main/resources/application.properties), please maintain Datasource URL as such for running this application in containerized environment
+In [application.properties](https://github.com/gokulanviswanathan/Spring-Boot-Hotel-Management-System/blob/master/src/main/resources/application.properties), please maintain Datasource URL as such for running this application in containerized environment
