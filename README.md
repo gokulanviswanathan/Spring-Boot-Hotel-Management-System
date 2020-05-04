@@ -31,6 +31,30 @@ Supports,
 7. Login to MySQL CLI and execute the SQL queries mentioned in [Initial Queries.txt](https://github.com/gokulanviswanathan/Spring-Boot-Hotel-Management-System/blob/master/Initial_DB_Queries.txt)
 8. Run HMS application as a container
 9. Verify HMS application container
+10. In web browser, enter the following address to get a sample JSON response http://<hostname or host  ip>:8080/hotel/getHotels
+  
+### Sample JSON
+
+```
+{
+  "content": [
+    {
+      "id": "abc123",
+      "name": "ABCXYZ",
+      "city": "PQRS",
+      "state": "XYZ"
+    }
+  ],
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 1,
+  "first": true,
+  "sort": null,
+  "numberOfElements": 1,
+  "size": 20,
+  "number": 0
+}
+```
 
 ### Userful Docker commands
 
@@ -63,7 +87,7 @@ docker ps -a
 
 ```
 // Run HMS application container
-docker container run --name hms -p8080:8080 --network hms-network gokulan90/spring-boot-hms:initial
+docker container run --detach --name hms -p8080:8080 --network hms-network gokulan90/spring-boot-hms:initial
 ```
 
 ```
