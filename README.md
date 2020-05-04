@@ -155,7 +155,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 </details>
 
-#### Customized application images available in DockerHub
+## Container images
 
 1. HMS application image - [Click here to see this image in DockerHub](https://hub.docker.com/repository/registry-1.docker.io/gokulan90/spring-boot-hms/tags?page=1)
 2. Customized 'MySQL 8.0.12' image from DockerHub - [Click here to see this image in DockerHub](https://hub.docker.com/repository/registry-1.docker.io/gokulan90/hms-mysql/tags?page=1)
