@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+    mysqldb:
+        container_name: mysqldb
+        image: gokulan90/hms-mysql:initial
+        ports:
+            - '3306:3306'
+        networks:
+            - hms-network
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+    hms:
+        container_name: hms
+        image: gokulan90/spring-boot-hms:initial
+        ports:
+            - '8080:8080'
+        networks:
+            - hms-network
+networks:
+    hms-network:
+        name: hms-network
+        driver: bridge
