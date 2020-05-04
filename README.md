@@ -36,41 +36,41 @@ Supports,
 
 Below the handy commands to bring this application up in Linux distribution environment using Docker
 
-> // PUll HMS application image from DockerHub
-> docker pull gokulan90/spring-boot-hms:initial
+// Pull HMS application image from DockerHub
+docker pull gokulan90/spring-boot-hms:initial
 
-> // PUll MySQL 8.0.12 image from DockerHub
-> docker pull mysql:8.0.12
+// Pull MySQL 8.0.12 image from DockerHub
+docker pull mysql:8.0.12
 
-> // Create an isolated bridge network
-> docker network create --driver bridge hms-network
+// Create an isolated bridge network
+docker network create --driver bridge hms-network
 
-> // Run MySQL container 
-> docker container run --detach --name mysqldb -p3306:3306 --network hms-network -e MYSQL_PASSWORD=root mysql:8.0.12
+// Run MySQL container 
+docker container run --detach --name mysqldb -p3306:3306 --network hms-network -e MYSQL_PASSWORD=root mysql:8.0.12
 
-> // List all the containers 
-> docker ps -a 
+// List all the containers 
+docker ps -a 
 
-> // Run HMS application container
-> docker container run --name hms -p8080:8080 --network hms-network gokulan90/spring-boot-hms
+// Run HMS application container
+docker container run --name hms -p8080:8080 --network hms-network gokulan90/spring-boot-hms
 
-> // Access contianer BASH 
-> docker exec -it <docker_container_id or container_name> bin/bash
+// Access contianer BASH 
+docker exec -it <docker_container_id or container_name> bin/bash
 
-> // Access container SH
-> docker exec -it <docker_container_id or container_name> sh
+// Access container SH
+docker exec -it <docker_container_id or container_name> sh
 
-> // Update apt-get library
-> apt-get update
+// Update apt-get library
+apt-get update
 
-> // Install ping utility
-> apt-get install -y inetutils-ping
+// Install ping utility
+apt-get install -y inetutils-ping
 
-> // Ping MySQL database container from HMS container
-> ping mysqldb
+// Ping MySQL database container from HMS container
+ping mysqldb
 
-> // Ping HMS application container from MySQL container
-> ping hms
+// Ping HMS application container from MySQL container
+ping hms
 
 ## CAUTION
 
