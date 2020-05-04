@@ -31,7 +31,7 @@ Supports,
 7. Login to MySQL CLI and execute the SQL queries mentioned in [Initial Queries.txt](https://github.com/gokulanviswanathan/Spring-Boot-Hotel-Management-System/blob/master/Initial_DB_Queries.txt)
 8. Run HMS application as a container
 9. Verify HMS application container
-10. In web browser, enter the following address to get a sample JSON response http://<hostname or host  ip>:8080/hotel/getHotels
+10. In web browser, enter the following address to get a sample JSON response http://machinename:8080/hotel/getHotels
   
 ### Sample JSON
 
