@@ -22,16 +22,14 @@ Supports,
 
 ### Steps 
 
-1. Pull HMS application image from DockerHub - [Click here to see this image in DockerHub](https://hub.docker.com/repository/registry-1.docker.io/gokulan90/spring-boot-hms/tags?page=1)
-2. Pull MySQL 8.0.12 image from DockerHub - [Click here to see this image in DockerHub](https://hub.docker.com/layers/mysql/library/mysql/8.0.12/images/sha256-ee1e8adfcefbc1dadf8bc01350b6b6ba9c6925d45e02371edf56e13b780f0e5a?context=explore)
+1. Navigate to your terminal or command prompt
+2. Pull two Docker images using Docker pull command (commands mentioned below)
 3. Create a common network of bridge type
 4. Run MySQL database as a container and expose to external port 3306 with MYSQL_PASSWORD as root
 5. Verify MySQL database container
-6. Login to MySQL container bash using 'docker exec ..' command
-7. Login to MySQL CLI and execute the SQL queries mentioned in [Initial Queries.txt](https://github.com/gokulanviswanathan/Spring-Boot-Hotel-Management-System/blob/master/Initial_DB_Queries.txt)
-8. Run HMS application as a container
-9. Verify HMS application container
-10. In web browser, enter the following address to get a sample JSON response http://machinename:8080/hotel/getHotels
+6. Run HMS application as a container
+7. Verify HMS application container
+8. In web browser, enter the following address to get a sample JSON response http://machinename:8080/hotel/getHotels
   
 ### Sample JSON
 
@@ -56,9 +54,19 @@ Supports,
 }
 ```
 
+### Customized application images in DockerHub
+
+1. HMS application image - [Click here to see this image in DockerHub](https://hub.docker.com/repository/registry-1.docker.io/gokulan90/spring-boot-hms/tags?page=1)
+2. Customized 'MySQL 8.0.12' image from DockerHub - [Click here to see this image in DockerHub](https://hub.docker.com/repository/registry-1.docker.io/gokulan90/hms-mysql/tags?page=1)
+
 ### Userful Docker commands
 
 Below the handy commands to bring this application up in Linux distribution environment using Docker
+
+```
+// Docker login
+docker login
+```
 
 ```
 // Pull HMS application image from DockerHub
@@ -67,7 +75,7 @@ docker pull gokulan90/spring-boot-hms:initial
 
 ```
 // Pull MySQL 8.0.12 image from DockerHub
-docker pull mysql:8.0.12
+docker pull gokulan90/hms-mysql:initial
 ```
 
 ```
@@ -77,7 +85,7 @@ docker network create --driver bridge hms-network
 
 ```
 // Run MySQL container 
-docker container run --detach --name mysqldb -p3306:3306 --network hms-network -e MYSQL_ROOT_PASSWORD=root mysql:8.0.12
+docker container run --detach --name mysqldb -p3306:3306 --network hms-network -e MYSQL_ROOT_PASSWORD=root gokulan90/hms-mysql:initial
 ```
 
 ```
