@@ -36,42 +36,75 @@ Supports,
 
 Below the handy commands to bring this application up in Linux distribution environment using Docker
 
+```
 // Pull HMS application image from DockerHub
 docker pull gokulan90/spring-boot-hms:initial
+```
 
+```
 // Pull MySQL 8.0.12 image from DockerHub
 docker pull mysql:8.0.12
+```
 
+```
 // Create an isolated bridge network
 docker network create --driver bridge hms-network
+```
 
+```
 // Run MySQL container 
-docker container run --detach --name mysqldb -p3306:3306 --network hms-network -e MYSQL_PASSWORD=root mysql:8.0.12
+docker container run --detach --name mysqldb -p3306:3306 --network hms-network -e MYSQL_ROOT_PASSWORD=root mysql:8.0.12
+```
 
+```
 // List all the containers 
 docker ps -a 
+```
 
+```
 // Run HMS application container
-docker container run --name hms -p8080:8080 --network hms-network gokulan90/spring-boot-hms
+docker container run --name hms -p8080:8080 --network hms-network gokulan90/spring-boot-hms:initial
+```
 
+```
 // Access contianer BASH 
 docker exec -it <docker_container_id or container_name> bin/bash
+```
 
+```
+// Access MySQL CLI 
+mysql -uroot -proot
+```
+
+```
 // Access container SH
 docker exec -it <docker_container_id or container_name> sh
+```
 
+```
 // Update apt-get library
 apt-get update
+```
 
+```
 // Install ping utility
 apt-get install -y inetutils-ping
+```
 
+```
 // Ping MySQL database container from HMS container
 ping mysqldb
+```
 
+```
 // Ping HMS application container from MySQL container
 ping hms
+```
 
-## CAUTION
+## Caution
 
 In [application.properties](https://github.com/gokulanviswanathan/Spring-Boot-Hotel-Management-System/blob/master/src/main/resources/application.properties), please maintain Datasource URL as such for running this application in containerized environment
+
+## Contact
+
+Having queries in setting up this project? - No worries. Please contact project maintainer [Gokulan Viswanathan](mailto:gokulan90@yahoo.com?subject=[GitHub]%20Source%20Spring%20Boot%20HMS)
