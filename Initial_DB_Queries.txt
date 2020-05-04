@@ -8,4 +8,4 @@ ALTER TABLE hotel ADD PRIMARY KEY (id);
 
 ALTER TABLE hotel MODIFY COLUMN id varchar(100);
 
-INSERT INTO hotel (id, name, city, start) values ("abc123", "ABCXYZ", "PQRS", "XYZ");
+INSERT INTO hotel (id, name, city, state) values ("abc123", "ABCXYZ", "PQRS", "XYZ");
