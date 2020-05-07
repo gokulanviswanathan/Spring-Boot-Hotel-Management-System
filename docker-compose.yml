@@ -16,6 +16,8 @@ services:
             - '8080:8080'
         networks:
             - hms-network
+        depends_on:
+            - mysqldb
 networks:
     hms-network:
         name: hms-network
